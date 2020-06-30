@@ -64,6 +64,7 @@ public class RoleService {
         }
         Role role = roleDTOToRoleMapper(roleDTO);
         role.setCreatedDate(new Date());
+        // if duplicate entry add then exception pop up
         roleRepository.save(role);
         return 1;
     }
