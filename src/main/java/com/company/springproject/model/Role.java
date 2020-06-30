@@ -12,6 +12,7 @@ public class Role {
     private String organization;
     private String firstName;
     private String lastName;
+    @Column(unique=true)
     private String nicNo;
     private String role;
     private Date createdDate;
