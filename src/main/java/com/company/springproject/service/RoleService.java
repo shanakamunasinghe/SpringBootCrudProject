@@ -51,7 +51,7 @@ public class RoleService {
 
     public RoleDTO getRoleById(int id) {
         Role role = roleRepository.getOne(id);
-        if(role != null){
+        if (role != null) {
             return roleToRoleDTOMapper(role);
         }
         // in here as the notfound it return null object
@@ -59,19 +59,19 @@ public class RoleService {
     }
 
     public int addRole(RoleDTO roleDTO) {
-        if(roleDTO == null){
+        if (!roleDTO.getRole().equals("Driver") && !roleDTO.getRole().equals("Assistant")) {
             return 0;
         }
         Role role = roleDTOToRoleMapper(roleDTO);
         role.setCreatedDate(new Date());
-        // if duplicate entry add then exception pop up
+        // if duplicate NIC entry add then exception pop up
         roleRepository.save(role);
         return 1;
     }
 
-    public int updateRole(RoleDTO roleDTO){
+    public int updateRole(RoleDTO roleDTO) {
         Role role = roleRepository.getOne(roleDTO.getId());
-        if(role == null){
+        if (role == null) {
             return 0;
         }
         role.setFirstName(roleDTO.getFirstName());
@@ -84,20 +84,20 @@ public class RoleService {
         return 1;
     }
 
-    public int deleteRole(RoleDTO roleDTO){
+    public int deleteRole(RoleDTO roleDTO) {
         Role role = roleRepository.getOne(roleDTO.getId());
-        if(role == null){
+        if (role == null) {
             return 0;
         }
         roleRepository.delete(role);
         return 1;
     }
 
-    public List<RetrieveDTO> getAllByOrganizationAndRoleType(String org, String roleType){
-        List<Role> roles = roleRepository.findByOrganizationAndRoleType(org,roleType);
+    public List<RetrieveDTO> getAllByOrganizationAndRoleType(String org, String roleType) {
+        List<Role> roles = roleRepository.findByOrganizationAndRoleType(org, roleType);
         List<RetrieveDTO> retrieveDTOS = new ArrayList<>();
-        if(roles != null){
-            for(Role role : roles){
+        if (roles != null) {
+            for (Role role : roles) {
                 RetrieveDTO retrieveDTO = new RetrieveDTO();
                 retrieveDTO.setFirstName(role.getFirstName());
                 retrieveDTO.setLastName(role.getLastName());
@@ -108,9 +108,9 @@ public class RoleService {
         return retrieveDTOS;
     }
 
-    public RoleDTO getRoleByNIC(String nicNo){
+    public RoleDTO getRoleByNIC(String nicNo) {
         Role role = roleRepository.findByNicNo(nicNo);
-        if(role != null){
+        if (role != null) {
             return roleToRoleDTOMapper(role);
         }
         // sending null object if not found

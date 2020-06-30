@@ -1,7 +1,11 @@
 package com.company.springproject.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class RequestDTO {
+    @ApiModelProperty(notes = "The Roles organization")
     private String organization;
+    @ApiModelProperty(notes = "The Roles role type")
     private String role;
 
     public RequestDTO() {

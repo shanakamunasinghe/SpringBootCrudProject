@@ -1,5 +1,7 @@
 package com.company.springproject.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 

@@ -1,13 +1,21 @@
 package com.company.springproject.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
 public class RoleDTO {
+    @ApiModelProperty(notes = "The database generated product ID")
     private int id;
+    @ApiModelProperty(notes = "The Role-specific organization")
     private String organization;
+    @ApiModelProperty(notes = "The Role first name")
     private String firstName;
+    @ApiModelProperty(notes = "The Role last name")
     private String lastName;
+    @ApiModelProperty(notes = "The Role NIC Number")
     private String nicNo;
+    @ApiModelProperty(notes = "The Role role Driver or Assistant")
     private String role;
 
     public RoleDTO() {
